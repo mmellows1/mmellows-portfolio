@@ -10,7 +10,7 @@ const SkillCard = ({ title, children, progress }: SkillCardProps) => {
   return (
     <div className="bg-slate-600 rounded-lg p-6 text-white py-8 pb-8 flex justify-between flex-col font-mono">
       <div>
-        <h3 className="font-bold mb-2 font-mono text-xl">{title}</h3>
+        <h3 className="font-bold mb-2 font-mono text-lg lg:text-xl">{title}</h3>
         <div className="mb-8">{children}</div>
       </div>
       <div className="flex items-center gap-4">

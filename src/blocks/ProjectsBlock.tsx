@@ -57,11 +57,11 @@ export default function ProjectsBlock({
         </Modal>
       )}
       <div className="">
-        <h2 className="col-span-1 text-2xl font-bold font-mono mb-8">
+        <h2 className="col-span-1 text-xl lg:text-2xl font-bold font-mono mb-8">
           {heading}
           <div className="grid grid-cols-3"></div>
         </h2>
-        <div className="grid grid-cols-6 gap-8">
+        <div className="flex flex-col lg:grid grid-cols-6 gap-8">
           {projects.map((project) => (
             <ProjectCard
               title={project.title}

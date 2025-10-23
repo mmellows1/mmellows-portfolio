@@ -9,10 +9,13 @@ export default function SkillsBlock({
   skills,
 }: SkillsBlockProps) {
   return (
-    <Section id="my-skills">
-      <div className="grid grid-cols-12 gap-12">
+    <Section
+      id="my-skills"
+      className="border-t-slate-700 lg:border-none border-t-4"
+    >
+      <div className="flex flex-col lg:grid grid-cols-12 gap-12">
         <div className="col-span-3 font-mono">
-          <h2 className="text-3xl mb-2 font-bold">{title}</h2>
+          <h2 className="text-lg lg:text-3xl mb-2 font-bold">{title}</h2>
           <p className="mb-4">{description}</p>
           <p className="mb-2 font-bold">Key skills</p>
           <div className="flex flex-wrap gap-2">
@@ -23,7 +26,7 @@ export default function SkillsBlock({
             ))}
           </div>
         </div>
-        <div className="col-span-8 col-start-5 grid grid-cols-3 gap-12">
+        <div className="col-span-8 col-start-5 flex flex-col lg:grid grid-cols-3 gap-12">
           {skillCards.map((skill, index) => (
             <SkillCard
               key={index}

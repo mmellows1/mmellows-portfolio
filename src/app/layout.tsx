@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="fixed flex h-full w-full bg-slate-800 text-white">
-          <div className="max-w-[300px] w-full border-r-4 border-r-slate-700 h-full flex flex-col justify-between">
+          <div className="max-w-[300px] w-full border-r-4 border-r-slate-700 h-full flex-col justify-between hidden lg:flex">
             <Sidebar />
           </div>
           <div className="w-full grow-2 scroll-smooth overflow-y-scroll overflow-x-hidden">

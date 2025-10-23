@@ -12,10 +12,10 @@ export default function HeroBlock({
 }: HeroBlockProps) {
   return (
     <Section id="about-me">
-      <h1 className="text-5xl font-bold bg-gradient-to-r from-secondary to-primary inline-block text-transparent bg-clip-text font-mono text-pretty mb-12">
+      <h1 className="text-2xl lg:text-5xl font-bold bg-gradient-to-r from-secondary to-primary inline-block text-transparent bg-clip-text font-mono text-pretty mb-12">
         {heroHeading}
       </h1>
-      <div className="flex gap-12 items-center">
+      <div className="flex lg:flex-row flex-col gap-12 items-center">
         <div className="col-span-2">
           <div className="p-2 bg-gradient-to-r from-primary to-secondary rounded-full">
             <Image
@@ -28,11 +28,10 @@ export default function HeroBlock({
           </div>
         </div>
         <div className="sm:col-span-6 lg:col-span-5 font-mono">
-          <h2 className="text-3xl mb-2 font-bold">{profileName}</h2>
+          <h2 className="text-xl lg:text-3xl mb-2 font-bold">{profileName}</h2>
           <p className="mb-4">{bioIntro}</p>
           <p>{bioSecondary}</p>
         </div>
-        <div className="sm:col-span-6 lg:col-span-4 lg:col-start-9"></div>
       </div>
     </Section>
   );
