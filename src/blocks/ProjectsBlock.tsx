@@ -61,7 +61,7 @@ export default function ProjectsBlock({
           {heading}
           <div className="grid grid-cols-3"></div>
         </h2>
-        <div className="flex flex-col lg:grid grid-cols-6 gap-8">
+        <div className="flex flex-col md:grid lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <ProjectCard
               title={project.title}

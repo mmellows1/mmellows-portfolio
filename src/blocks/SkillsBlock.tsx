@@ -13,7 +13,7 @@ export default function SkillsBlock({
       id="my-skills"
       className="border-t-slate-700 lg:border-none border-t-4"
     >
-      <div className="flex flex-col lg:grid grid-cols-12 gap-12">
+      <div className="flex flex-col lg:grid lg:col-span-6 xl:grid-cols-12 gap-12">
         <div className="col-span-3 font-mono">
           <h2 className="text-lg lg:text-3xl mb-2 font-bold">{title}</h2>
           <p className="mb-4">{description}</p>
@@ -26,16 +26,18 @@ export default function SkillsBlock({
             ))}
           </div>
         </div>
-        <div className="col-span-8 col-start-5 flex flex-col lg:grid grid-cols-3 gap-12">
-          {skillCards.map((skill, index) => (
-            <SkillCard
-              key={index}
-              title={skill.title}
-              progress={skill.progress}
-            >
-              {skill.description}
-            </SkillCard>
-          ))}
+        <div className="lg:col-span-6 xl:col-span-9 ">
+          <div className="w-full flex flex-col md:grid lg:grid-cols-1 xl:grid-cols-3 gap-12">
+            {skillCards.map((skill, index) => (
+              <SkillCard
+                key={index}
+                title={skill.title}
+                progress={skill.progress}
+              >
+                {skill.description}
+              </SkillCard>
+            ))}
+          </div>
         </div>
       </div>
     </Section>

@@ -2,6 +2,7 @@ import HeroBlock from "@/blocks/HeroBlock";
 import ProjectsBlock from "@/blocks/ProjectsBlock";
 import SkillsBlock from "@/blocks/SkillsBlock";
 import { getCareers, getHomepage, getProjects } from "@/utils/api";
+import { Download, Linkedin } from "lucide-react";
 
 export default async function Home() {
   // Fetch data from Sanity
@@ -46,6 +47,29 @@ export default async function Home() {
         heading={homepage.projectsSectionHeading}
         projects={projects}
       />
+
+      <div className="flex lg:hidden bg-slate-700 p-8 justify-center gap-4 font-bold">
+        <a
+          className="font-mono flex gap-4 items-center text-sm"
+          href="/cv.pdf"
+          target="_blank"
+        >
+          <div>
+            <Download className="bg-amber-500 p-1 rounded-md" size={24} />
+          </div>
+          Download my CV
+        </a>
+        <a
+          className="font-mono flex gap-4 items-center text-sm"
+          href="https://www.linkedin.com/in/matthew-mellows-b3166487/"
+          target="_blank"
+        >
+          <div>
+            <Linkedin className="bg-amber-500 p-1 rounded-md" size={24} />
+          </div>
+          View my LinkedIn
+        </a>
+      </div>
     </div>
   );
 }
