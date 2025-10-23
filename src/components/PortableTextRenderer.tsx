@@ -1,20 +1,22 @@
-import { PortableText as PortableTextReact } from '@portabletext/react';
-import { PortableText, SanityImage } from '@/types/sanity';
-import { getImageUrl } from '@/utils/api';
-import Image from 'next/image';
+import { PortableText as PortableTextReact } from "@portabletext/react";
+import { PortableText, SanityImage } from "@/types/sanity";
+import { getImageUrl } from "@/utils/api";
+import Image from "next/image";
 
 interface PortableTextRendererProps {
   content: PortableText;
 }
 
-export default function PortableTextRenderer({ content }: PortableTextRendererProps) {
-  const components = {
+export default function PortableTextRenderer({
+  content,
+}: PortableTextRendererProps) {
+  const components: any = {
     types: {
       image: ({ value }: { value: SanityImage }) => (
         <div className="my-4">
           <Image
             src={getImageUrl(value, 800, 600)}
-            alt={value.alt || ''}
+            alt={value.alt || ""}
             width={800}
             height={600}
             className="rounded-lg"
@@ -75,7 +77,13 @@ export default function PortableTextRenderer({ content }: PortableTextRendererPr
           {children}
         </code>
       ),
-      link: ({ children, value }: { children: React.ReactNode; value: { href: string } }) => (
+      link: ({
+        children,
+        value,
+      }: {
+        children: React.ReactNode;
+        value: { href: string };
+      }) => (
         <a
           href={value.href}
           className="text-primary underline hover:text-primary-dark"

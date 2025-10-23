@@ -1,8 +1,7 @@
-import { getCareers, getProjects, getHomepage } from "@/utils/api";
 import HeroBlock from "@/blocks/HeroBlock";
-import SkillsBlock from "@/blocks/SkillsBlock";
-import CareerBlock from "@/blocks/CareerBlock";
 import ProjectsBlock from "@/blocks/ProjectsBlock";
+import SkillsBlock from "@/blocks/SkillsBlock";
+import { getCareers, getHomepage, getProjects } from "@/utils/api";
 
 export default async function Home() {
   // Fetch data from Sanity
@@ -25,7 +24,6 @@ export default async function Home() {
 
   const homepage = homepageResponse.data;
   const projects = projectsResponse.data;
-  const careers = careersResponse.data;
 
   return (
     <div className="overflow-y-scroll h-[100vh]">

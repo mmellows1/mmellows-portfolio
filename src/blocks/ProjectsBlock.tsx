@@ -5,7 +5,13 @@ import PortableTextRenderer from "@/components/PortableTextRenderer";
 import ProjectCard from "@/components/ProjectCard";
 import Section from "@/components/Section";
 import { ProjectsBlockProps } from "@/types/blocks";
-import { Project } from "@/types/sanity";
+import {
+  PortableText,
+  PortableTextBlock,
+  PortableTextChild,
+  Project,
+  SanityImage,
+} from "@/types/sanity";
 import { useState } from "react";
 
 export default function ProjectsBlock({
@@ -15,15 +21,15 @@ export default function ProjectsBlock({
   const [open, setOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   // Helper function to extract plain text from portable text
-  const getPlainText = (portableText: any): string => {
+  const getPlainText = (portableText: PortableText): string => {
     if (!portableText || !Array.isArray(portableText)) return "";
 
     return (
       portableText
-        .map((block: any) => {
+        .map((block: PortableTextBlock | SanityImage) => {
           if (block._type === "block" && block.children) {
             return block.children
-              .map((child: any) => child.text || "")
+              .map((child: PortableTextChild) => child.text || "")
               .join("");
           }
           return "";
@@ -42,7 +48,7 @@ export default function ProjectsBlock({
     <Section id="my-projects">
       {open && (
         <Modal onRequestClose={() => setOpen(false)}>
-          <div className="text-black font-mono text-gray-700">
+          <div className="font-mono text-gray-700">
             <h1 className="text-4xl font-extrabold text-gray-800 mb-4">
               {activeProject?.title}
             </h1>
@@ -56,7 +62,7 @@ export default function ProjectsBlock({
           <div className="grid grid-cols-3"></div>
         </h2>
         <div className="grid grid-cols-6 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <ProjectCard
               title={project.title}
               key={project._id}
