@@ -9,7 +9,6 @@ import {
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { getCareers, getHomepage, getProjects } from "@/utils/api";
 import { formatStartAndEndDate } from "@/utils/dates";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { SquareArrowOutUpRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,8 +50,8 @@ export default async function Home() {
         id="career"
       >
         <ol className="group/list">
-          {careers.map((career, index) => (
-            <li className="mb-12">
+          {careers.map((career) => (
+            <li className="mb-12" key={career._id}>
               <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                 <header
                   className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2"
@@ -88,13 +87,13 @@ export default async function Home() {
                   </p>
                   <ul className="space-y-2 text-sm">
                     {career.links?.map((link, index) => (
-                      <li>
+                      <li key={index}>
                         <Link
                           target={link.newTab ? "_blank" : "_self"}
                           href={link.url}
                           className="text-white focus-visible:text-purple-300 hover:text-teal-300 flex items-center gap-2"
                         >
-                          {link.text} <SquareArrowOutUpRightIcon size={16} />
+                          {link.label} <SquareArrowOutUpRightIcon size={16} />
                         </Link>
                       </li>
                     ))}
@@ -104,7 +103,7 @@ export default async function Home() {
                     aria-label="Technologies used"
                   >
                     {career.techStack?.map((tech, index) => (
-                      <li className="mr-1.5 mt-2">
+                      <li key={tech + index} className="mr-1.5 mt-2">
                         <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 ">
                           {tech}
                         </div>
@@ -130,8 +129,8 @@ export default async function Home() {
         id="projects"
       >
         <ul className="group/list space-y-8">
-          {projects.map((project, index) => (
-            <Dialog>
+          {projects.map((project) => (
+            <Dialog key={project._id}>
               <DialogTrigger asChild>
                 <li>
                   <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">

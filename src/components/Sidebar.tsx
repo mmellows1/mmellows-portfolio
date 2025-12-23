@@ -45,14 +45,7 @@
 
 // export default Sidebar;
 
-import {
-  Briefcase,
-  Calendar,
-  Home,
-  Inbox,
-  Search,
-  Settings,
-} from "lucide-react";
+import { Briefcase, Home } from "lucide-react";
 
 import {
   Sidebar,
