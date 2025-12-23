@@ -1,11 +1,17 @@
-import { createClient } from '@sanity/client';
-import { Project, Career, Homepage, SanityImage, SanityResponse } from '@/types/sanity';
+import { createClient } from "@sanity/client";
+import {
+  Project,
+  Career,
+  Homepage,
+  SanityImage,
+  SanityResponse,
+} from "@/types/sanity";
 
 // Sanity client configuration
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
-  apiVersion: '2024-01-01',
+  apiVersion: "2024-01-01",
   useCdn: true, // Use CDN for faster responses
   token: process.env.SANITY_API_TOKEN, // Optional: for private datasets
 });
@@ -39,7 +45,12 @@ const PROJECTS_QUERY = `*[_type == "project"] | order(_createdAt desc) {
   title,
   description,
   slug,
-  images,
+  images[]{
+    "url": asset->url,
+    "width": asset->metadata.dimensions.width,
+    "height": asset->metadata.dimensions.height,
+    "alt": coalesce(alt, "") 
+  },
   links,
   subtitle,
   fullDescription,
@@ -48,7 +59,7 @@ const PROJECTS_QUERY = `*[_type == "project"] | order(_createdAt desc) {
   references
 }`;
 
-const CAREERS_QUERY = `*[_type == "career"] | order(dateStarted desc) {
+const CAREERS_QUERY = `*[_type == "career"] | order(defined(dateEnded) asc, dateStarted desc) {
   _id,
   _type,
   _createdAt,
@@ -57,8 +68,10 @@ const CAREERS_QUERY = `*[_type == "career"] | order(dateStarted desc) {
   title,
   dateStarted,
   dateEnded,
-  excerpt,
-  obligations
+  description,
+  jobTitle,
+  techStack,
+  links
 }`;
 
 const PROJECT_BY_SLUG_QUERY = `*[_type == "project" && slug.current == $slug][0] {
@@ -88,10 +101,11 @@ export async function getHomepage(): Promise<SanityResponse<Homepage | null>> {
     const data = await client.fetch<Homepage | null>(HOMEPAGE_QUERY);
     return { data };
   } catch (error) {
-    console.error('Error fetching homepage:', error);
-    return { 
-      data: null, 
-      error: error instanceof Error ? error.message : 'Failed to fetch homepage' 
+    console.error("Error fetching homepage:", error);
+    return {
+      data: null,
+      error:
+        error instanceof Error ? error.message : "Failed to fetch homepage",
     };
   }
 }
@@ -105,10 +119,11 @@ export async function getProjects(): Promise<SanityResponse<Project[]>> {
     const data = await client.fetch<Project[]>(PROJECTS_QUERY);
     return { data };
   } catch (error) {
-    console.error('Error fetching projects:', error);
-    return { 
-      data: [], 
-      error: error instanceof Error ? error.message : 'Failed to fetch projects' 
+    console.error("Error fetching projects:", error);
+    return {
+      data: [],
+      error:
+        error instanceof Error ? error.message : "Failed to fetch projects",
     };
   }
 }
@@ -122,10 +137,10 @@ export async function getCareers(): Promise<SanityResponse<Career[]>> {
     const data = await client.fetch<Career[]>(CAREERS_QUERY);
     return { data };
   } catch (error) {
-    console.error('Error fetching careers:', error);
-    return { 
-      data: [], 
-      error: error instanceof Error ? error.message : 'Failed to fetch careers' 
+    console.error("Error fetching careers:", error);
+    return {
+      data: [],
+      error: error instanceof Error ? error.message : "Failed to fetch careers",
     };
   }
 }
@@ -135,15 +150,19 @@ export async function getCareers(): Promise<SanityResponse<Career[]>> {
  * @param slug - The project slug
  * @returns Promise<Project | null> - The project or null if not found
  */
-export async function getProjectBySlug(slug: string): Promise<SanityResponse<Project | null>> {
+export async function getProjectBySlug(
+  slug: string
+): Promise<SanityResponse<Project | null>> {
   try {
-    const data = await client.fetch<Project | null>(PROJECT_BY_SLUG_QUERY, { slug });
+    const data = await client.fetch<Project | null>(PROJECT_BY_SLUG_QUERY, {
+      slug,
+    });
     return { data };
   } catch (error) {
-    console.error('Error fetching project by slug:', error);
-    return { 
-      data: null, 
-      error: error instanceof Error ? error.message : 'Failed to fetch project' 
+    console.error("Error fetching project by slug:", error);
+    return {
+      data: null,
+      error: error instanceof Error ? error.message : "Failed to fetch project",
     };
   }
 }
@@ -157,31 +176,34 @@ export async function getProjectBySlug(slug: string): Promise<SanityResponse<Pro
  * @returns Optimized image URL
  */
 export function getImageUrl(
-  image: SanityImage, 
-  width?: number, 
-  height?: number, 
+  image: SanityImage,
+  width?: number,
+  height?: number,
   quality: number = 75
 ): string {
   if (!image?.asset?._ref) {
-    return '';
+    return "";
   }
 
   const baseUrl = `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}`;
-  const imageId = image.asset._ref.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png').replace('-webp', '.webp');
-  
+  const imageId = image.asset._ref
+    .replace("image-", "")
+    .replace("-jpg", ".jpg")
+    .replace("-png", ".png")
+    .replace("-webp", ".webp");
+
   let url = `${baseUrl}/${imageId}`;
   const params = new URLSearchParams();
-  
-  if (width) params.append('w', width.toString());
-  if (height) params.append('h', height.toString());
-  params.append('q', quality.toString());
-  params.append('fit', 'crop');
-  params.append('auto', 'format');
-  
+
+  if (width) params.append("w", width.toString());
+  if (height) params.append("h", height.toString());
+  params.append("q", quality.toString());
+  params.append("fit", "crop");
+  params.append("auto", "format");
+
   if (params.toString()) {
     url += `?${params.toString()}`;
   }
-  
+
   return url;
 }
-

@@ -1,17 +1,20 @@
 // Sanity Image type for image references
 export interface SanityImage {
-  _type: 'image';
+  _type: "image";
   asset: {
     _ref: string;
-    _type: 'reference';
+    _type: "reference";
   };
   alt?: string;
+  url: string;
+  width: number;
+  height: number;
   caption?: string;
 }
 
 // Portable Text Block types
 export interface PortableTextBlock {
-  _type: 'block';
+  _type: "block";
   _key: string;
   style?: string;
   children: PortableTextChild[];
@@ -20,7 +23,7 @@ export interface PortableTextBlock {
 }
 
 export interface PortableTextChild {
-  _type: 'span';
+  _type: "span";
   _key: string;
   text: string;
   marks?: string[];
@@ -45,27 +48,27 @@ export interface SkillCard {
 export interface Reference {
   title: string;
   url: string;
-  type: 'github' | 'website' | 'demo' | 'other';
+  type: "github" | "website" | "demo" | "other";
 }
 
 // Project Link interface for project links
 export interface ProjectLink {
   label: string;
   url: string;
-  openInNewTab: boolean;
+  newTab: boolean;
 }
 
 // Project interface matching the project schema
 export interface Project {
   _id: string;
-  _type: 'project';
+  _type: "project";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title: string;
   description: PortableText;
   slug: {
-    _type: 'slug';
+    _type: "slug";
     current: string;
   };
   images?: SanityImage[];
@@ -80,21 +83,24 @@ export interface Project {
 // Career interface matching the career schema
 export interface Career {
   _id: string;
-  _type: 'career';
+  _type: "career";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title: string;
   dateStarted: string;
   dateEnded?: string;
-  excerpt: string;
-  obligations?: string[];
+  description: string;
+  jobTitle: string;
+  company: string;
+  links?: ProjectLink[];
+  techStack?: string[];
 }
 
 // Homepage interface matching the homepage schema
 export interface Homepage {
   _id: string;
-  _type: 'homepage';
+  _type: "homepage";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;

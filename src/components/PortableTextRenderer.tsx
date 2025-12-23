@@ -86,7 +86,7 @@ export default function PortableTextRenderer({
       }) => (
         <a
           href={value.href}
-          className="text-primary underline hover:text-primary-dark"
+          className="hover:text-primary-dark hover:underline underline-offset-4 text-teal-300 font-bold"
           target="_blank"
           rel="noopener noreferrer"
         >
