@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Matt | Full-Stack Developer Portfolio",
+  title: "Matthew Mellows | Full-Stack Developer Portfolio",
   description:
     "Explore Matt's portfolio showcasing projects, skills, and expertise as a full-stack developer. Specializing in web development, modern frameworks, and creating dynamic, responsive applications.",
 };
