@@ -99,7 +99,11 @@ const PROJECT_BY_SLUG_QUERY = `*[_type == "project" && slug.current == $slug][0]
  */
 export async function getHomepage(): Promise<SanityResponse<Homepage | null>> {
   try {
-    const data = await client.fetch<Homepage | null>(HOMEPAGE_QUERY);
+    const data = await client.fetch<Homepage | null>(
+      HOMEPAGE_QUERY,
+      {},
+      { next: { revalidate: 10 } }
+    );
     return { data };
   } catch (error) {
     console.error("Error fetching homepage:", error);
@@ -117,7 +121,11 @@ export async function getHomepage(): Promise<SanityResponse<Homepage | null>> {
  */
 export async function getProjects(): Promise<SanityResponse<Project[]>> {
   try {
-    const data = await client.fetch<Project[]>(PROJECTS_QUERY);
+    const data = await client.fetch<Project[]>(
+      PROJECTS_QUERY,
+      {},
+      { next: { revalidate: 10 } }
+    );
     return { data };
   } catch (error) {
     console.error("Error fetching projects:", error);
@@ -135,35 +143,17 @@ export async function getProjects(): Promise<SanityResponse<Project[]>> {
  */
 export async function getCareers(): Promise<SanityResponse<Career[]>> {
   try {
-    const data = await client.fetch<Career[]>(CAREERS_QUERY);
+    const data = await client.fetch<Career[]>(
+      CAREERS_QUERY,
+      {},
+      { next: { revalidate: 10 } }
+    );
     return { data };
   } catch (error) {
     console.error("Error fetching careers:", error);
     return {
       data: [],
       error: error instanceof Error ? error.message : "Failed to fetch careers",
-    };
-  }
-}
-
-/**
- * Fetch a single project by slug
- * @param slug - The project slug
- * @returns Promise<Project | null> - The project or null if not found
- */
-export async function getProjectBySlug(
-  slug: string
-): Promise<SanityResponse<Project | null>> {
-  try {
-    const data = await client.fetch<Project | null>(PROJECT_BY_SLUG_QUERY, {
-      slug,
-    });
-    return { data };
-  } catch (error) {
-    console.error("Error fetching project by slug:", error);
-    return {
-      data: null,
-      error: error instanceof Error ? error.message : "Failed to fetch project",
     };
   }
 }

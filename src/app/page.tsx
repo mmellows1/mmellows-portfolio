@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { getCareers, getHomepage, getProjects } from "@/utils/api";
 import { formatStartAndEndDate } from "@/utils/dates";
-import { Link2, LinkIcon, SquareArrowOutUpRightIcon } from "lucide-react";
+import { LinkIcon, SquareArrowOutUpRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
