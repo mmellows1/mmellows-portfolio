@@ -44,6 +44,7 @@ const PROJECTS_QUERY = `*[_type == "project"] | order(_createdAt desc) {
   _rev,
   title,
   description,
+  excerpt,
   slug,
   images[]{
     "url": asset->url,

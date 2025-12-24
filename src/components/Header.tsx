@@ -1,9 +1,18 @@
+import { File, GithubIcon, LinkedinIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const Header = () => {
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
       <div>
+        <Image
+          src="/me.webp"
+          width={256}
+          height={256}
+          alt="Matthew Mellows"
+          className="object-cover size-36 rounded-full mb-4"
+        />
         <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
           <Link href="/">Matthew Mellows</Link>
         </h1>
@@ -11,7 +20,8 @@ const Header = () => {
           Full-Stack Developer | Wordpress Engineer
         </h2>
         <p className="mt-4 max-w-xs leading-normal text-slate-400">
-          I build accessible, pixel-perfect digital experiences for the web.
+          Full-Stack developer with 5+ years of experience in Wordpress as well
+          as React and NextJS
         </p>
         <nav className="nav hidden lg:block" aria-label="In-page jump links">
           <ul className="mt-16 w-max">
@@ -38,6 +48,30 @@ const Header = () => {
                   Projects
                 </span>
               </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <nav className="" aria-label="In-page jump links">
+          <ul className="items-center justify-start gap-4 flex">
+            <li className="hover:text-teal-300 transition">
+              <Link
+                href="https://www.linkedin.com/in/matthew-mellows-b3166487/"
+                target="_blank"
+              >
+                <LinkedinIcon />
+              </Link>
+            </li>
+            <li className="hover:text-teal-300 transition">
+              <Link href="https://github.com/mmellows1" target="_blank">
+                <GithubIcon />
+              </Link>
+            </li>
+            <li className="hover:text-teal-300 transition">
+              <Link href="cv.pdf" target="_blank">
+                <File />
+              </Link>
             </li>
           </ul>
         </nav>

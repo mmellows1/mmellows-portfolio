@@ -6,10 +6,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { getCareers, getHomepage, getProjects } from "@/utils/api";
 import { formatStartAndEndDate } from "@/utils/dates";
-import { SquareArrowOutUpRightIcon } from "lucide-react";
+import { Link2, LinkIcon, SquareArrowOutUpRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -65,20 +70,9 @@ export default async function Home() {
                 <div className="z-10 sm:col-span-6 space-y-4">
                   <h3 className="font-medium leading-snug text-slate-300">
                     <div>
-                      <a
-                        className="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base mb-1"
-                        href="https://www.klaviyo.com"
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        aria-label="Senior Frontend Engineer, Accessibility at Klaviyo (opens in a new tab)"
-                      >
-                        <span className="flex gap-2 items-center">
-                          {career.title}
-                          <span className="">
-                            <SquareArrowOutUpRightIcon size={16} />
-                          </span>
-                        </span>
-                      </a>
+                      <span className="flex gap-2 items-center">
+                        {career.title}
+                      </span>
                       <p className="text-slate-400">{career.jobTitle}</p>
                     </div>
                   </h3>
@@ -93,7 +87,7 @@ export default async function Home() {
                           href={link.url}
                           className="text-white focus-visible:text-purple-300 hover:text-teal-300 flex items-center gap-2"
                         >
-                          {link.label} <SquareArrowOutUpRightIcon size={16} />
+                          <LinkIcon size={14} /> {link.label}{" "}
                         </Link>
                       </li>
                     ))}
@@ -145,12 +139,11 @@ export default async function Home() {
                           {project.title}
                         </span>
                       </h3>
-                      <p className="mt-2 text-sm leading-normal">
-                        Video course that teaches how to build a web app with
-                        the Spotify Web API. Topics covered include the
-                        principles of REST APIs, user auth flows, Node, Express,
-                        React, Styled Components, and more.
-                      </p>
+                      {project.excerpt && (
+                        <p className="mt-2 text-sm leading-normal">
+                          {project.excerpt}
+                        </p>
+                      )}
                     </div>
                     {project.images && project.images.length > 0 && (
                       <Image
@@ -170,9 +163,9 @@ export default async function Home() {
               <DialogContent className="bg-slate-900 h-full sm:h-auto sm:bg-transparent sm:max-w-5xl w-full sm:p-12 sm:border-2 border-none">
                 <div className="flex flex-col">
                   <div className="text-slate-400">
-                    <h3 className="text-2xl font-bold tracking-tight text-white sm:text-3xl mb-4">
+                    <DialogTitle className="text-2xl font-bold tracking-tight text-white sm:text-3xl mb-4">
                       {project.title}
-                    </h3>
+                    </DialogTitle>
                     <PortableTextRenderer content={project.description} />
                   </div>
                   <div className="mb-6">

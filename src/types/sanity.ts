@@ -71,6 +71,7 @@ export interface Project {
     _type: "slug";
     current: string;
   };
+  excerpt?: string;
   images?: SanityImage[];
   links?: ProjectLink[];
   subtitle?: string;
