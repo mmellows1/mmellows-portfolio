@@ -1,4 +1,4 @@
-import { File, GithubIcon, LinkedinIcon } from "lucide-react";
+import { File, GithubIcon, LinkedinIcon, StarsIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -52,6 +52,7 @@ const Header = () => {
           </ul>
         </nav>
       </div>
+      <StarsIcon />
       <div className="mt-8">
         <nav className="" aria-label="In-page jump links">
           <ul className="items-center justify-start gap-4 flex">
