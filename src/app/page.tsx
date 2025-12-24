@@ -160,7 +160,7 @@ export default async function Home() {
                   </div>
                 </li>
               </DialogTrigger>
-              <DialogContent className="bg-slate-900 h-full sm:h-auto sm:bg-transparent sm:max-w-5xl w-full sm:p-12 sm:border-2 border-none">
+              <DialogContent className="bg-slate-900 h-[90vh] overflow-y-auto sm:h-auto sm:bg-transparent sm:max-w-5xl w-full sm:p-12 sm:border-2 border-none">
                 <div className="flex flex-col">
                   <div className="text-slate-400">
                     <DialogTitle className="text-2xl font-bold tracking-tight text-white sm:text-3xl mb-4">
