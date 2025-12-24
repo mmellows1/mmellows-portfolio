@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
+    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] flex-col lg:justify-between lg:py-24 gap-4">
       <div>
         <Image
           src="/me.webp"
@@ -52,7 +52,7 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      <div>
+      <div className="mt-8">
         <nav className="" aria-label="In-page jump links">
           <ul className="items-center justify-start gap-4 flex">
             <li className="hover:text-teal-300 transition">
