@@ -55,7 +55,7 @@ const Header = () => {
       <div className="mt-8">
         <nav className="" aria-label="In-page jump links">
           <ul className="items-center justify-start gap-4 flex">
-            <li className="hover:text-teal-300 transition">
+            <li className="hover:text-yellow-300 transition">
               <Link
                 href="https://www.linkedin.com/in/matthew-mellows-b3166487/"
                 target="_blank"
@@ -63,12 +63,12 @@ const Header = () => {
                 <LinkedinIcon />
               </Link>
             </li>
-            <li className="hover:text-teal-300 transition">
+            <li className="hover:text-yellow-300 transition">
               <Link href="https://github.com/mmellows1" target="_blank">
                 <GithubIcon />
               </Link>
             </li>
-            <li className="hover:text-teal-300 transition">
+            <li className="hover:text-yellow-300 transition">
               <Link href="cv.pdf" target="_blank">
                 <File />
               </Link>
