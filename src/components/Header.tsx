@@ -52,7 +52,6 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      <StarsIcon />
       <div className="mt-8">
         <nav className="" aria-label="In-page jump links">
           <ul className="items-center justify-start gap-4 flex">
