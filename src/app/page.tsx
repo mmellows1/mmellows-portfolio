@@ -48,6 +48,7 @@ export default async function Home() {
         <div className="space-y-4">
           <p dangerouslySetInnerHTML={{ __html: homepage.bioIntro }}></p>
           <p dangerouslySetInnerHTML={{ __html: homepage.bioSecondary }}></p>
+          UPDATED
         </div>
       </section>
       <section
