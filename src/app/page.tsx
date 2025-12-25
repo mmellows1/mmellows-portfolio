@@ -53,7 +53,7 @@ export default async function Home() {
           <p dangerouslySetInnerHTML={{ __html: homepage.bioSecondary }}></p>
         </div>
       </Section>
-      <Careers id="careers" careers={careers} />
+      <Careers id="career" careers={careers} />
       <Projects id="projects" projects={projects} />
     </div>
   );
